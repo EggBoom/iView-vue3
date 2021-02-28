@@ -1,5 +1,30 @@
 # iView-vue3
 
-vue3重写iView-master练习
+> iView rewritten with vue3.
 
-[预览效果](www.pangtougui.top:8081)
+- [Website](http://www.pangtougui.top:8081) - A overview for iView-vue3.
+
+
+## Main
+
+```text
+src/
+├── assets
+├── components
+├── mixins
+├── modules
+├── routes
+├── urtils
+├── views
+├── App.vue
+└── main.js
+```
+
+## Getting started
+
+```shell
+npm run dev
+
+npm run build
+```
+
