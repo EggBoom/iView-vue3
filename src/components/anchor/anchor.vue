@@ -11,7 +11,7 @@
 	</component>
 </template>
 <script>
-import { computed, getCurrentInstance, onMounted, onUnmounted, ref } from 'vue';
+import { computed, getCurrentInstance, onMounted, onUnmounted, ref, nextTick } from 'vue';
 import { scrollTop, findComponentsDownward, sharpMatcherRegx } from '../../utils/assist';
 import { on, off } from '../../utils/dom';
 export default {
@@ -121,52 +121,56 @@ export default {
                 const titleEle = document.getElementById(id);
                 if (titleEle) offsetArr.push({
                     link: `#${id}`,
-                    offset: titleEle.offsetTop - this.scrollElement.offsetTop
+                    offset: titleEle.offsetTop - scrollElement.value.offsetTop
                 });
             });
-            this.titlesOffsetArr = offsetArr;
+            titlesOffsetArr.value = offsetArr;
         };
         const getCurrentScrollAtTitleId = () => {
             let i = -1;
-            let len = this.titlesOffsetArr.length;
+            let len = titlesOffsetArr.value.length;
             let titleItem = {
                 link: '#',
                 offset: 0
             };
-            scrollTop += this.bounds;
+            scrollTop += props.bounds;
             while (++i < len) {
-                let currentEle = this.titlesOffsetArr[i];
-                let nextEle = this.titlesOffsetArr[i + 1];
+                let currentEle = titlesOffsetArr.value[i];
+                let nextEle = titlesOffsetArr.value[i + 1];
                 if (scrollTop >= currentEle.offset && scrollTop < ((nextEle && nextEle.offset) || Infinity)) {
-                    titleItem = this.titlesOffsetArr[i];
+                    titleItem = titlesOffsetArr.value[i];
                     break;
                 }
             }
-            this.currentLink = titleItem.link;
-            this.handleSetInkTop();
+            currentLink.value = titleItem.link;
+            handleSetInkTop();
         };
         const getContainer = () => {
-            this.scrollContainer = this.container ? (typeof this.container === 'string' ? document.querySelector(this.container) : this.container) : window;
-            this.scrollElement = this.container ? this.scrollContainer : (document.documentElement || document.body);
+            scrollContainer.value = props.container 
+                                    ? (typeof props.container === 'string' ? document.querySelector(props.container) : props.container)
+                                    : window;
+            scrollElement.value = props.container
+                                ? scrollContainer.value
+                                : (document.documentElement || document.body);
         };
         const removeListener = () => {
-            off(this.scrollContainer, 'scroll', handleScroll);
+            off(scrollContainer.value, 'scroll', handleScroll);
             off(window, 'hashchange', handleHashChange);
         };
         const init = () => {
-            this.handleHashChange();
-            this.$nextTick(() => {
-                this.removeListener();
-                this.getContainer();
-                this.wrapperTop = this.containerIsWindow ? 0 : this.scrollElement.offsetTop;
-                this.handleScrollTo();
-                this.handleSetInkTop();
-                this.updateTitleOffset();
-                if (this.titlesOffsetArr[0]) {
-                    this.upperFirstTitle = this.scrollElement.scrollTop < this.titlesOffsetArr[0].offset;
+            handleHashChange();
+            nextTick(() => {
+                removeListener();
+                getContainer();
+                wrapperTop.value = containerIsWindow.value ? 0 : scrollElement.value.offsetTop;
+                handleScrollTo();
+                handleSetInkTop();
+                updateTitleOffset();
+                if (titlesOffsetArr.value[0]) {
+                    upperFirstTitle.value = scrollElement.value.scrollTop < titlesOffsetArr.value[0].offset;
                 }
-                on(this.scrollContainer, 'scroll', this.handleScroll);
-                on(window, 'hashchange', this.handleHashChange);
+                on(scrollContainer.value, 'scroll', handleScroll);
+                on(window, 'hashchange', handleHashChange);
             });
         };
 

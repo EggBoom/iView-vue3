@@ -124,8 +124,9 @@ export default {
             }
 
             return [
-                `${prefixCls.value}-star`,
                 {
+                    [`${prefixCls.value}-star`]: !showCharacter.value,
+                    [`${prefixCls.value}-star-chart`]: showCharacter.value,
                     [`${prefixCls.value}-star-full`]: (!isLast && full) || (isLast && !isHalf.value),
                     [`${prefixCls.value}-star-half`]: isLast && isHalf.value,
                     [`${prefixCls.value}-star-zero`]: !full

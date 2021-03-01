@@ -39,9 +39,7 @@ export default {
                 anchorCom.currentLink === props.href ? `${prefix.value}-active` : ''
             ];
         });
-        const linkTitleClasses = computed(() => {
-            return [`${prefix.value}-title`];
-        });
+        const linkTitleClasses = `${prefix.value}-title`;
 
         const goAnchor = () => {
             anchorCom.currentLink = props.href;

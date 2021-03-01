@@ -77,7 +77,7 @@ export default {
                 //     width: `${affixEl.value.offsetWidth}px`
                 // };
 
-                emit('change', true);
+                emit('on-change', true);
             } else if ((elOffset.top - props.offsetTop) > scrollTop && offsetType.value == 'top' && affix.value) {
                 slot.value = false;
 
@@ -109,7 +109,7 @@ export default {
                 //     width: `${affixEl.value.offsetWidth}px`
                 // };
 
-                emit('change', true);
+                emit('on-change', true);
             } else if ((elOffset.top + props.offsetBottom + elHeight) < (scrollTop + windowHeight) && offsetType.value == 'bottom' && affix.value) {
                 affix.value = false;
 
@@ -119,7 +119,7 @@ export default {
                 styles.width = '';
                 // styles = null;
 
-                emit('change', false);
+                emit('on-change', false);
             }
         };
 
