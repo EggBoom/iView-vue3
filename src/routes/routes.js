@@ -12,6 +12,8 @@ import RadioDemo from '../views/RadioDemo.vue';
 import CheckboxDemo from '../views/CheckboxDemo.vue';
 import GridDemo from '../views/GridDemo.vue';
 import CircleDemo from '../views/CircleDemo.vue';
+import SwitchDemo from '../views/SwitchDemo.vue';
+import RateDemo from '../views/RateDemo.vue';
 
 const routes = [
     { path: '/', component: ButtonDemo},
@@ -29,6 +31,8 @@ const routes = [
     { path: '/Checkbox', component: CheckboxDemo },
     { path: '/Row/Col', component: GridDemo },
     { path: '/Circle', component: CircleDemo },
+    { path: '/Switch', component: SwitchDemo },
+    { path: '/Rate', component: RateDemo },
 ];
 
 export default routes;

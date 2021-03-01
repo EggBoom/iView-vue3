@@ -64,6 +64,12 @@
             <MenuItem name="23" @click="handleClick">
                 Checkbox 多选
             </MenuItem>
+            <MenuItem @click="handleClick">
+                Switch 开关
+            </MenuItem>
+            <MenuItem @click="handleClick">
+                Rate 评分
+            </MenuItem>
         </MenuGroup>
         <MenuGroup title="其他">
             <MenuItem name="20" @click="handleClick">

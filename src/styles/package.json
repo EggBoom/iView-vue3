@@ -1,0 +1,20 @@
+{
+  "name": "styles",
+  "version": "1.0.0",
+  "description": "iView 样式工程",
+  "main": "build-style.js",
+  "scripts": {
+    "build": "gulp --gulpfile ./build-style.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-less": "^4.0.1",
+    "gulp-rename": "^1.4.0",
+    "less": "^2.7.3"
+  }
+}
