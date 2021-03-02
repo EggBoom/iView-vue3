@@ -28,8 +28,8 @@
                 Divider 分割线
             </MenuItem>
         </MenuGroup>
-        <!-- <MenuGroup title="导航">
-            <MenuItem name="11" @click="handleClick">
+        <MenuGroup title="导航">
+            <!-- <MenuItem name="11" @click="handleClick">
                 Menu 导航菜单
             </MenuItem>
             <MenuItem name="12" @click="handleClick">
@@ -46,17 +46,17 @@
             </MenuItem>
             <MenuItem name="16" @click="handleClick">
                 Badge 徽标
-            </MenuItem>
-            <MenuItem name="17" @click="handleClick">
+            </MenuItem> -->
+            <MenuItem @click="handleClick">
                 Anchor 锚点
             </MenuItem>
-            <MenuItem name="18" @click="handleClick">
+            <!-- <MenuItem name="18" @click="handleClick">
                 Steps 步骤数
             </MenuItem>
             <MenuItem name="19" @click="handleClick">
                 LoadingBar 加载进度条
-            </MenuItem>
-        </MenuGroup> -->
+            </MenuItem> -->
+        </MenuGroup>
         <MenuGroup title="表单">
             <MenuItem name="22" @click="handleClick">
                 Radio 单选

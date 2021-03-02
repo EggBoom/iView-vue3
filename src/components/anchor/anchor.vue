@@ -11,8 +11,8 @@
 	</component>
 </template>
 <script>
-import { computed, getCurrentInstance, onMounted, onUnmounted, ref, nextTick } from 'vue';
-import { scrollTop, findComponentsDownward, sharpMatcherRegx } from '../../utils/assist';
+import { computed, getCurrentInstance, onMounted, onUnmounted, ref, nextTick, provide, watch } from 'vue';
+import { scrollTop as scrollToTop, sharpMatcherRegx } from '../../utils/assist';
 import { on, off } from '../../utils/dom';
 export default {
     name: 'Anchor',
@@ -41,10 +41,8 @@ export default {
         }
     },
     emits: ['on-change'],
-    setup(props, { emit }) {
+    setup(props, { emit, slots }) {
         const instance = getCurrentInstance();
-
-        provide('anchorCom', instance);
 
         const prefix = 'ivu-anchor';
         const isAffixed = ref(false);
@@ -97,7 +95,7 @@ export default {
             if (!anchor) return;
             const offsetTop = anchor.offsetTop - wrapperTop.value - offset;
             animating.value = true;
-            scrollTop(scrollContainer.value, scrollElement.value.scrollTop, offsetTop, 600, () => {
+            scrollToTop(scrollContainer.value, scrollElement.value.scrollTop, offsetTop, 600, () => {
                 animating.value = false;
             });
             handleSetInkTop();
@@ -110,23 +108,23 @@ export default {
             inkTop.value = top;
         };
         const updateTitleOffset = () => {
-            const links = findComponentsDownward(this, 'AnchorLink').map(link => {
-                return link.href;
-            });
+            const links = slots.default() && slots.default().map(link => link.props.href);
             const idArr = links.map(link => {
                 return link.split('#')[1];
             });
             let offsetArr = [];
             idArr.forEach(id => {
                 const titleEle = document.getElementById(id);
-                if (titleEle) offsetArr.push({
-                    link: `#${id}`,
-                    offset: titleEle.offsetTop - scrollElement.value.offsetTop
-                });
+                if (titleEle) {
+                    offsetArr.push({
+                        link: `#${id}`,
+                        offset: titleEle.offsetTop - scrollElement.value.offsetTop
+                    });
+                }
             });
             titlesOffsetArr.value = offsetArr;
         };
-        const getCurrentScrollAtTitleId = () => {
+        const getCurrentScrollAtTitleId = (scrollTop) => {
             let i = -1;
             let len = titlesOffsetArr.value.length;
             let titleItem = {
@@ -174,13 +172,15 @@ export default {
             });
         };
 
-        watch('$route', () => {
-            handleHashChange();
-            nextTick(() => {
-                handleScrollTo();
-            });
-        });
-        watch(container, () => init());
+        provide('anchorCom', instance);
+
+        // watch('$route', () => {
+        //     handleHashChange();
+        //     nextTick(() => {
+        //         handleScrollTo();
+        //     });
+        // });
+        watch(props.container, () => init());
         watch(currentLink, (newHref, oldHref) => {
             emit('on-change', newHref, oldHref);
         });
@@ -204,7 +204,10 @@ export default {
             wrapperComponent,
             wrapperStyle,
             containerIsWindow,
-            handleAffixStateChange
+            handleAffixStateChange,
+            handleHashChange,
+            handleScrollTo,
+            init
         }
     }
 };

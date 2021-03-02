@@ -2,7 +2,7 @@
 	<div :class="anchorLinkClasses">
         <a :class="linkTitleClasses" 
             :href="href" 
-            :data-scroll-offset="scrollOffset" 
+            :data-scroll-offset="linkScrollOffset" 
             :data-href="href" 
             @click.prevent="goAnchor" 
             :title="title">
@@ -18,12 +18,7 @@ export default {
     props: {
         href: String,
         title: String,
-        scrollOffset: {
-            type: Number,
-            default () {
-                return anchorCom.scrollOffset;
-            }
-        }
+        scrollOffset: Number
     },
     emits: ['on-select'],
     setup(props) {
@@ -33,19 +28,21 @@ export default {
 
         const anchorCom = inject('anchorCom');
 
+        const linkScrollOffset = props.scrollOffset || anchorCom.proxy.scrollOffset;
+        
         const anchorLinkClasses = computed(() => {
             return [
-                prefix.value,
-                anchorCom.currentLink === props.href ? `${prefix.value}-active` : ''
+                prefix,
+                anchorCom.currentLink === props.href ? `${prefix}-active` : ''
             ];
         });
-        const linkTitleClasses = `${prefix.value}-title`;
+        const linkTitleClasses = `${prefix}-title`;
 
         const goAnchor = () => {
-            anchorCom.currentLink = props.href;
-            anchorCom.handleHashChange();
-            anchorCom.handleScrollTo();
-            anchorCom.$emit('on-select', props.href);
+            anchorCom.proxy.currentLink = props.href;
+            anchorCom.proxy.handleHashChange();
+            anchorCom.proxy.handleScrollTo();
+            anchorCom.proxy.$emit('on-select', props.href);
             const isRoute = instance.$router;
             if (isRoute) {
                 instance.$router.push(props.href, () => {});
@@ -56,15 +53,16 @@ export default {
 
         onMounted(() => {
             nextTick(() => {
-                anchorCom.init();
+                anchorCom.proxy.init();
             });
         })
 
         return {
-            prefix,
             anchorLinkClasses,
             linkTitleClasses,
-            goAnchor
+            goAnchor,
+            anchorCom,
+            linkScrollOffset
         }
     }
 };

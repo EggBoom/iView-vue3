@@ -204,3 +204,4 @@ export {
     scrollTop,
     getStyle
 }
+export const sharpMatcherRegx = /#([^#]+)$/;
