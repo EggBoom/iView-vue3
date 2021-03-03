@@ -11,11 +11,14 @@
 	</component>
 </template>
 <script>
+import Affix from '../affix';
 import { computed, getCurrentInstance, onMounted, onUnmounted, ref, nextTick, provide, watch } from 'vue';
 import { scrollTop as scrollToTop, sharpMatcherRegx } from '../../utils/assist';
 import { on, off } from '../../utils/dom';
+
 export default {
     name: 'Anchor',
+    components: { Affix },
     props: {
         affix: {
             type: Boolean,

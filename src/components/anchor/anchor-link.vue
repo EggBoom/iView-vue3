@@ -13,6 +13,7 @@
 </template>
 <script>
 import { computed, getCurrentInstance, inject, onMounted, nextTick } from 'vue';
+
 export default {
     name: 'AnchorLink',
     props: {
@@ -29,7 +30,7 @@ export default {
         const anchorCom = inject('anchorCom');
 
         const linkScrollOffset = props.scrollOffset || anchorCom.proxy.scrollOffset;
-        
+
         const anchorLinkClasses = computed(() => {
             return [
                 prefix,

@@ -7,7 +7,7 @@
     </div>
 </template>
 <script>
-import { ref, toRefs, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, reactive, computed, onMounted, onBeforeUnmount } from 'vue'
 import { on, off } from '../../utils/dom';
 
 export default {
@@ -146,7 +146,7 @@ export default {
             return ret;
         };
 
-        const getOffset = element => {
+        const getOffset = (element) => {
             const rect = element.getBoundingClientRect();
 
             const scrollTop = getScroll(window, true);

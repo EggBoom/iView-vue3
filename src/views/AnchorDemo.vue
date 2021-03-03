@@ -4,6 +4,7 @@
 
   <h2>基础用法</h2>
   <p>最简单的用法。</p>
+  <p>设置<code>show-ink</code>显示小圆点。</p>
   <div id="basic_usage">
     <div class="example">
       <Anchor show-ink>
@@ -19,10 +20,11 @@
   </div>
 
   <h2>静态位置</h2>
-  <p>不浮动，状态不随页面滚动变化。</p>
+  <p>设置<code>affix</code>为<code>false</code>。</p>
+  <p>锚点不浮动，状态不随页面滚动变化。</p>
   <div id="static_position">
     <div class="example">
-      <Anchor :affix="false" show-ink>
+      <Anchor :affix="false">
         <AnchorLink href="#basic_usage" title="基础用法" />
         <AnchorLink href="#static_position" title="静态位置" />
         <AnchorLink href="#API" title="API">
@@ -148,11 +150,15 @@
     </table>
   </div>
 </template>
-
+<style scoped>
+.example .ivu-affix {
+    z-index: 1000;
+}
+</style>
 <script>
 import Anchor from "../components/anchor";
-import AnchorLink from "../components/anchor/anchor-link.vue";
 
+const AnchorLink = Anchor.Link;
 export default {
   components: { Anchor, AnchorLink },
 };
