@@ -71,6 +71,11 @@
                 Rate 评分
             </MenuItem>
         </MenuGroup>
+        <MenuGroup title="视图">
+            <MenuItem @click="handleClick">
+                Alert 警告提示
+            </MenuItem>
+        </MenuGroup>
         <MenuGroup title="其他">
             <MenuItem name="20" @click="handleClick">
                 Affix 图钉

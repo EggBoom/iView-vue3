@@ -15,6 +15,7 @@ import CircleDemo from '../views/CircleDemo.vue';
 import SwitchDemo from '../views/SwitchDemo.vue';
 import RateDemo from '../views/RateDemo.vue';
 import AnchorDemo from '../views/AnchorDemo.vue';
+import AlertDemo from '../views/AlertDemo.vue';
 
 const routes = [
     { path: '/', component: ButtonDemo},
@@ -35,6 +36,7 @@ const routes = [
     { path: '/Switch', component: SwitchDemo },
     { path: '/Rate', component: RateDemo },
     { path: '/Anchor', component: AnchorDemo },
+    { path: '/Alert', component: AlertDemo },
 ];
 
 export default routes;

@@ -1,4 +1,11 @@
 <template>
+    <div class="anchorWrapper">
+        <Anchor show-ink>
+        <AnchorLink href="#basic_usage" title="基础用法" />
+        <AnchorLink href="#static_position" title="静态位置" />
+        <AnchorLink href="#API" title="API" />
+      </Anchor>
+  </div>
   <h1>Anchor 锚点</h1>
   <p>用于跳转到页面指定位置。</p>
 

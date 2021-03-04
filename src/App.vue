@@ -149,4 +149,26 @@ flex-direction: column;
     font-weight: 400;
     margin: 8px 0;
  }
+ .api h2,h3 {
+   display: inline-block
+ }
+
+.anchor a {
+  opacity: 0;
+  font-size: 24px;
+  transition: opacity .2s ease-in-out;
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
+}
+.anchor a:hover {
+    opacity: 1;
+}
+.anchorWrapper {
+  position: fixed;
+  top: 75px;
+  right: 0;
+  width: 200px;
+  z-index: 100;
+}
 </style>

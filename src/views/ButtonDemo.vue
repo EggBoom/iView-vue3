@@ -1,12 +1,25 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+        <AnchorLink href="#type" title="按钮类型" />
+        <AnchorLink href="#ghost" title="幽灵按钮" />
+        <AnchorLink href="#icon" title="图标按钮及按钮形状" />
+        <AnchorLink href="#size" title="按钮尺寸" />
+        <AnchorLink href="#long" title="长按钮" />
+        <AnchorLink href="#disable" title="不可用状态" />
+        <AnchorLink href="#loading" title="加载中状态" />
+        <AnchorLink href="#group" title="按钮组合" />
+        <AnchorLink href="#vertical" title="按钮组纵向排列" />
+        <AnchorLink href="#jump" title="转跳" />
+        <AnchorLink href="#API" title="API" />
+    </Anchor>
+  </div>
   <h1>Button 按钮</h1>
   <p>常用的操作按钮。</p>
 
-  <h2>按钮类型</h2>
+  <h2 id="type">按钮类型</h2>
   <p>按钮类型有：默认按钮、主按钮、虚线按钮、文字按钮以及四种颜色按钮。</p>
-  <p>
-    通过设置<code>type</code>为<code>primary</code>、<code>dashed</code>、<code>text</code>、<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code>创建不同样式的按钮，不设置为默认样式。
-  </p>
+  <p>通过设置<code>type</code>为<code>primary</code>、<code>dashed</code>、<code>text</code>、<code>info</code>、<code>success</code>、<code>warning</code>、<code>error</code>创建不同样式的按钮，不设置为默认样式。</p>
   <div class="example">
     <Button>Default</Button>
     <Button type="primary">Primary</Button>
@@ -19,7 +32,7 @@
     <Button type="error">Error</Button>
   </div>
 
-  <h2>幽灵按钮</h2>
+  <h2 id="ghost">幽灵按钮</h2>
   <p>幽灵按钮将其他按钮的内容反色，背景变为透明，常用在有色背景上。</p>
   <div class="example" style="background-color: #2c3e50">
     <Button type="default" ghost>Default</Button>
@@ -33,7 +46,7 @@
     <Button type="error" ghost>Error</Button>
   </div>
 
-  <h2>图标按钮及按钮形状</h2>
+  <h2 id="icon">图标按钮及按钮形状</h2>
   <p>
     通过设置<code>icon</code>属性在<code>Button</code>内嵌入一个<code>Icon</code>，或者直接在<code>Button</code>内使用<code>Icon</code>组件。
   </p>
@@ -55,7 +68,7 @@
     <Button shape="circle">Circle</Button>
   </div>
 
-  <h2>按钮尺寸</h2>
+  <h2 id="size">按钮尺寸</h2>
   <p>按钮有三种尺寸：大、默认（中）、小</p>
   <p>
     通过设置<code>size</code>为<code>large</code>和<code>small</code>将按钮设置为大和小尺寸，不设置为默认（中）尺寸。
@@ -96,7 +109,7 @@
     </div>
   </div>
 
-  <h2>长按钮</h2>
+  <h2 id="long">长按钮</h2>
   <p>
     通过设置属性 <code>long</code> 可将按钮宽度设置为
     100%，常用于弹窗内操作按钮。
@@ -111,7 +124,7 @@
     <Button type="error" long>DELETE</Button>
   </div>
 
-  <h2>不可用状态</h2>
+  <h2 id="disable">不可用状态</h2>
   <p>通过添加<code>disabled</code>属性可将按钮设置为不可用状态。</p>
   <div class="example">
     <Button>Default</Button>
@@ -127,7 +140,7 @@
     <Button type="text" disabled>Text(Disabled)</Button>
   </div>
 
-  <h2>加载中状态</h2>
+  <h2 id="loading">加载中状态</h2>
   <p>
     通过添加<code>loading</code>属性可以让按钮处于加载中状态，后两个按钮在点击时进入加载状态。
   </p>
@@ -152,7 +165,7 @@
     <Button loading shape="circle" type="primary"></Button>
   </div>
 
-  <h2>按钮组合</h2>
+  <h2 id="group">按钮组合</h2>
   <p>
     将多个<code>Button</code>放入<code>ButtonGroup</code>内，可实现按钮组合的效果。
   </p>
@@ -266,7 +279,7 @@
     </ButtonGroup>
   </div>
 
-  <h2>按钮组纵向排列</h2>
+  <h2 id="vertival">按钮组纵向排列</h2>
   <p>
     通过设置<code>ButtonGroup</code>的属性<code>vertical</code>，可以使按钮组纵向排列。
   </p>
@@ -279,7 +292,7 @@
     </ButtonGroup>
   </div>
 
-  <h2>转跳</h2>
+  <h2 id="jump">转跳</h2>
   <p>
     通过设置 <code>to</code> 可以实现点击按钮直接跳转，支持传入 vue-router
     对象。
@@ -412,13 +425,16 @@
 import { ref } from "vue";
 import Button from "../components/button";
 import Radio from "../components/radio";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 const RadioGroup = Radio.Group;
 
 const ButtonGroup = Button.Group;
 
 export default {
-  components: { Button, ButtonGroup, Radio, RadioGroup },
+  components: { Button, ButtonGroup, Radio, RadioGroup, Anchor, AnchorLink },
   setup() {
     const buttonSize = ref("large");
     const loading = ref(false);

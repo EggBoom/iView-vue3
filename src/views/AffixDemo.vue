@@ -1,10 +1,17 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+        <AnchorLink href="#basic" title="基础用法" />
+        <AnchorLink href="#offset" title="偏移" />
+        <AnchorLink href="#icooffsetBottomn" title="固定在底部" />
+        <AnchorLink href="#change" title="固定状态改变时的回调" />
+        <AnchorLink href="#API" title="API" />
+    </Anchor>
+  </div>
   <h1>Affix 图钉</h1>
-  <p>
-    使用图钉，可以将内容固定在屏幕上，并且不随页面的滚动而滚动。常用于侧边菜单等。
-  </p>
+  <p>使用图钉，可以将内容固定在屏幕上，并且不随页面的滚动而滚动。常用于侧边菜单等。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>简单使用，当元素不可见时，直接固定在最顶端。</p>
   <div class="example">
     <Affix :offset-top="60">
@@ -12,7 +19,7 @@
     </Affix>
   </div>
 
-  <h2>偏移</h2>
+  <h2 id="offset">偏移</h2>
   <p>当滚动到一定距离时再固定。</p>
   <div class="example">
     <Affix :offset-top="110">
@@ -20,7 +27,7 @@
     </Affix>
   </div>
 
-  <h2>固定在底部</h2>
+  <h2 id="offsetBottom">固定在底部</h2>
   <p>在屏幕下方固定，可以通过缩小浏览器窗口高度来查看效果。</p>
   <p>
     注意，<code>offset-top</code>和<code>offset-bottom</code>只可以设置一个，如果都设置，会使用<code>offset-top</code>。
@@ -31,7 +38,7 @@
     </Affix>
   </div>
 
-  <h2>固定状态改变时的回调</h2>
+  <h2 id="change">固定状态改变时的回调</h2>
   <p>当固定状态发生改变时，会触发事件。</p>
   <div class="example">
     <Affix :offset-top="100" @change="change">
@@ -67,14 +74,7 @@
           <td>-</td>
         </tr>
         <tr>
-          <td>
-            use-capture
-            <span class="ivu-badge">
-              <sup class="ivu-badge-count ivu-badge-count-alone"
-                >4.1.0</sup
-              ></span
-            >
-          </td>
+          <td>use-capture</td>
           <td>addEventListener 原生的 useCapture 选项</td>
           <td>Boolean</td>
           <td>false</td>
@@ -104,9 +104,12 @@
 
 <script>
 import Affix from "../components/affix";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 export default {
-  components: { Affix },
+  components: { Affix, Anchor, AnchorLink },
   setup() {
     const change = () => {
       alert("change");

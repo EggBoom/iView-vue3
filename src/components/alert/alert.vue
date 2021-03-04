@@ -6,104 +6,111 @@
                     <Icon :type="iconType"></Icon>
                 </slot>
             </span>
-            <span :class="messageClasses"><slot></slot></span>
-            <span :class="descClasses"><slot name="desc"></slot></span>
+            <span :class="messageClasses">
+                <slot></slot>
+            </span>
+            <span :class="descClasses">
+                <slot name="desc"></slot>
+            </span>
             <a :class="closeClasses" v-if="closable" @click="close">
                 <slot name="close">
-                    <Icon type="ios-close-empty"></Icon>
+                    <Icon type="ios-close"></Icon>
                 </slot>
             </a>
         </div>
     </transition>
 </template>
 <script>
-    import Icon from '../icon';
-    import { oneOf } from '../../utils/assist';
+import Icon from '../icon';
+import { oneOf } from '../../utils/assist';
+import { computed, onMounted, ref } from 'vue';
 
-    const prefixCls = 'ivu-alert';
+const prefixCls = 'ivu-alert';
 
-    export default {
-        name: 'Alert',
-        components: { Icon },
-        props: {
-            type: {
-                validator (value) {
-                    return oneOf(value, ['success', 'info', 'warning', 'error']);
-                },
-                default: 'info'
+export default {
+    name: 'Alert',
+    components: { Icon },
+    props: {
+        type: {
+            validator (value) {
+                return oneOf(value, ['success', 'info', 'warning', 'error']);
             },
-            closable: {
-                type: Boolean,
-                default: false
-            },
-            showIcon: {
-                type: Boolean,
-                default: false
-            },
-            banner: {
-                type: Boolean,
-                default: false
-            }
+            default: 'info'
         },
-        data () {
-            return {
-                closed: false,
-                desc: false
-            };
+        closable: {
+            type: Boolean,
+            default: false
         },
-        computed: {
-            wrapClasses () {
-                return [
-                    `${prefixCls}`,
-                    `${prefixCls}-${this.type}`,
-                    {
-                        [`${prefixCls}-with-icon`]: this.showIcon,
-                        [`${prefixCls}-with-desc`]: this.desc,
-                        [`${prefixCls}-with-banner`]: this.banner
-                    }
-                ];
-            },
-            messageClasses () {
-                return `${prefixCls}-message`;
-            },
-            descClasses () {
-                return `${prefixCls}-desc`;
-            },
-            closeClasses () {
-                return `${prefixCls}-close`;
-            },
-            iconClasses () {
-                return `${prefixCls}-icon`;
-            },
-            iconType () {
-                let type = '';
-
-                switch (this.type) {
-                    case 'success':
-                        type = 'checkmark-circled';
-                        break;
-                    case 'info':
-                        type = 'information-circled';
-                        break;
-                    case 'warning':
-                        type = 'android-alert';
-                        break;
-                    case 'error':
-                        type = 'close-circled';
-                        break;
-                }
-
-                return type;
-            }
+        showIcon: {
+            type: Boolean,
+            default: false
         },
-        methods: {
-            close (e) {
-                this.closed = true;
-                this.$emit('on-close', e);
-            }
-        },
-        mounted () {
-            this.desc = this.$slots.desc !== undefined;
+        banner: {
+            type: Boolean,
+            default: false
         }
-    };
+    },
+    emits: ['on-close'],
+    setup(props, { slots, emit }) {
+        const closed = ref(false);
+        const desc = ref(false);
+
+        const wrapClasses = computed(() => {
+            return [
+                `${prefixCls}`,
+                `${prefixCls}-${props.type}`,
+                {
+                    [`${prefixCls}-with-icon`]: props.showIcon,
+                    [`${prefixCls}-with-desc`]: desc.value,
+                    [`${prefixCls}-with-banner`]: props.banner
+                }
+            ];
+        });
+        const messageClasses = `${prefixCls}-message`;
+        const descClasses = `${prefixCls}-desc`;
+        const closeClasses = `${prefixCls}-close`;
+        const iconClasses = `${prefixCls}-icon`;
+        const iconType = computed(() => {
+            let type = '';
+
+            switch (props.type) {
+                case 'success':
+                    type = 'ios-information-circle';
+                    break;
+                case 'info':
+                    type = 'ios-checkmark-circle';
+                    break;
+                case 'warning':
+                    type = 'ios-alert';
+                    break;
+                case 'error':
+                    type = 'ios-close-circle';
+                    break;
+            }
+
+            return type;
+        });
+
+        const close = (e) => {
+            closed.value = true;
+            emit('on-close', e);
+        };
+
+        onMounted(() => {
+            desc.value = slots.desc !== undefined;
+        });
+
+        return {
+            closed,
+            desc,
+            wrapClasses,
+            messageClasses,
+            descClasses,
+            closeClasses,
+            iconClasses,
+            iconType,
+            close
+        }
+    }
+};
 </script>
