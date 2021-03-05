@@ -43,10 +43,10 @@
             </MenuItem>
             <MenuItem name="15" @click="handleClick">
                 Breadcrumb 面包屑
-            </MenuItem>
-            <MenuItem name="16" @click="handleClick">
+            </MenuItem>  -->
+            <MenuItem @click="handleClick">
                 Badge 徽标
-            </MenuItem> -->
+            </MenuItem>
             <MenuItem @click="handleClick">
                 Anchor 锚点
             </MenuItem>

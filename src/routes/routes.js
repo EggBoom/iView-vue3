@@ -16,6 +16,7 @@ import SwitchDemo from '../views/SwitchDemo.vue';
 import RateDemo from '../views/RateDemo.vue';
 import AnchorDemo from '../views/AnchorDemo.vue';
 import AlertDemo from '../views/AlertDemo.vue';
+import BadgeDemo from '../views/BadgeDemo.vue';
 
 const routes = [
     { path: '/', component: ButtonDemo},
@@ -37,6 +38,7 @@ const routes = [
     { path: '/Rate', component: RateDemo },
     { path: '/Anchor', component: AnchorDemo },
     { path: '/Alert', component: AlertDemo },
+    { path: '/Badge', component: BadgeDemo },
 ];
 
 export default routes;

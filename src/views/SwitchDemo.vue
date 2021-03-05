@@ -1,14 +1,27 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#size" title="尺寸" />
+      <AnchorLink href="#text" title="文字和图标" />
+      <AnchorLink href="#disable" title="不可用" />
+      <AnchorLink href="#loading" title="加载中" />
+      <AnchorLink href="#custom" title="自定义颜色" />
+      <AnchorLink href="#change" title="before-change" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>Switch 开关</h1>
   <p>在两种状态间切换时用到的开关选择器。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>状态切换时会触发事件。</p>
   <div class="example">
     <Switch v-model="switch1" @on-change="change" />
   </div>
 
-  <h2>尺寸</h2>
+  <h2 id="size">尺寸</h2>
   <p>
     设置<code>size</code>为 <code>large</code> 或
     <code>small</code> 使用大号和小号的开关。
@@ -19,7 +32,7 @@
     <Switch size="small" />
   </div>
 
-  <h2>文字和图标</h2>
+  <h2 id="text">文字和图标</h2>
   <p>自定义内容，建议如果使用2个汉字，将开关尺寸设置为 large。</p>
   <div class="example">
     <Switch>
@@ -41,7 +54,7 @@
     </Switch>
   </div>
 
-  <h2>不可用</h2>
+  <h2 id="disable">不可用</h2>
   <p>禁用开关。</p>
   <div class="example">
     <Switch :disabled="disabled" />
@@ -50,14 +63,14 @@
     >
   </div>
 
-  <h2>加载中</h2>
+  <h2 id="loading">加载中</h2>
   <p>标识开关操作仍在执行中。</p>
   <div class="example">
     <Switch loading :modelValue="true" />
     <Switch loading :modelValue="false" size="small" />
   </div>
 
-  <h2>自定义颜色</h2>
+  <h2 id="custom">自定义颜色</h2>
   <p>
     设置属性 <code>true-color</code> 和
     <code>false-color</code> 可以自定义背景色。
@@ -66,7 +79,7 @@
     <Switch true-color="#13ce66" false-color="#ff4949" />
   </div>
 
-  <h2>before-change</h2>
+  <h2 id="change">before-change</h2>
   <p>设置属性 <code>before-change</code> 并返回 Promise，可以阻止切换。</p>
   <div class="example">
     <Switch :before-change="handleBeforeChange" />
@@ -196,9 +209,12 @@ import { ref } from "vue";
 import Switch from "../components/switch";
 import Icon from "../components/icon";
 import Button from "../components/button";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 export default {
-  components: { Switch, Icon, Button },
+  components: { Switch, Icon, Button, Anchor, AnchorLink },
   setup() {
     const switch1 = ref(false);
     const disabled = ref(true);

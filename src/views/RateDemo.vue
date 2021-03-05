@@ -1,20 +1,31 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#half" title="半星" />
+      <AnchorLink href="#readonly" title="只读" />
+      <AnchorLink href="#clear" title="清除" />
+      <AnchorLink href="#custom" title="自定义字符和图标" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>Rate 评分</h1>
   <p>对事物进行快速的评级操作，或对评价进行展示。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>基本用法</p>
   <div class="example">
     <Rate v-model="value" />
   </div>
 
-  <h2>半星</h2>
+  <h2 id="half">半星</h2>
   <p>设置属性 <code>allow-half</code> 可以选中半星。</p>
   <div class="example">
     <Rate allow-half v-model="valueHalf" />
   </div>
 
-  <h2>显示提示</h2>
+  <h2 id="text">显示提示</h2>
   <p>设置属性 <code>show-text</code> 可以显示提示文字。</p>
   <p>提示内容也可以通过 slot 自定义。</p>
   <div class="example">
@@ -25,13 +36,13 @@
     </Rate>
   </div>
 
-  <h2>只读</h2>
+  <h2 id="readonly">只读</h2>
   <p>设置属性 <code>disabled</code> 开启只读模式，无法交互。</p>
   <div class="example">
     <Rate disabled v-model="valueDisabled" />
   </div>
 
-  <h2>清除</h2>
+  <h2 id="clear">清除</h2>
   <p>支持允许或者禁用清除。</p>
   <div class="example">
     <Rate clearable v-model="value1" /> clearable: true
@@ -39,7 +50,7 @@
     <Rate v-model="value2" /> clearable: false
   </div>
 
-  <h2>自定义字符和图标</h2>
+  <h2 id="custom">自定义字符和图标</h2>
   <p>设置 <code>character</code> 属性，可以自定义字符。</p>
   <p>
     设置 <code>icon</code> 或 <code>custom-icon</code> 属性，可以自定义图标。
@@ -143,9 +154,12 @@
 <script>
 import { ref } from "vue";
 import Rate from "../components/rate";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 export default {
-  components: { Rate },
+  components: { Rate, Anchor, AnchorLink },
   setup() {
     const value = ref(0);
     const valueHalf = ref(2.5);

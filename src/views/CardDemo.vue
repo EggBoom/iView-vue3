@@ -1,8 +1,19 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#border" title="无边框" />
+      <AnchorLink href="#disable" title="禁用悬停阴影" />
+      <AnchorLink href="#shadow" title="卡片阴影" />
+      <AnchorLink href="#introduce" title="简介卡片" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>Card 卡片</h1>
   <p>基础容器，用来显示文字、列表、图文等内容，也可以配合其它组件一起使用。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>
     自定义标题、额外操作和主体内容，可以完全自由控制各个部分，也可以结合其它组件一起使用，较为灵活。
   </p>
@@ -35,7 +46,7 @@
     </Card>
   </div>
 
-  <h2>无边框</h2>
+  <h2 id="border">无边框</h2>
   <p>
     通过设置属性<code>bordered为</code> false
     ，可以不添加边框，建议在灰色背景下使用。
@@ -58,7 +69,7 @@
     </div>
   </div>
 
-  <h2>禁用悬停阴影</h2>
+  <h2 id="disable">禁用悬停阴影</h2>
   <p>通过设置属性<code>dis-hover</code>来禁用鼠标悬停显示阴影的效果。</p>
   <div class="example">
     <Row>
@@ -85,7 +96,7 @@
     </Row>
   </div>
 
-  <h2>卡片阴影</h2>
+  <h2 id="shadow">卡片阴影</h2>
   <p>
     通过设置属性<code>shadow</code>来显示卡片阴影，使用该属性后，<code>bordered和</code>和<code>dis-hover</code>将无效，建议在灰色背景下使用。
   </p>
@@ -114,7 +125,7 @@
     </Row>
   </div>
 
-  <h2>简介卡片</h2>
+  <h2 id="introduce">简介卡片</h2>
   <p>只包含内容区域，没有标题。</p>
   <div class="example">
     <Card style="width: 320px">
@@ -166,64 +177,36 @@
         </tr>
         <tr>
           <td>title</td>
-          <td>标题，2.12.0 新增</td>
+          <td>标题</td>
           <td>String</td>
           <td>-</td>
         </tr>
         <tr>
           <td>icon</td>
-          <td>标题前的图标，2.12.0 新增</td>
+          <td>标题前的图标</td>
           <td>String</td>
           <td>-</td>
         </tr>
         <tr>
-          <td>
-            to
-            <span class="ivu-badge">
-              <sup class="ivu-badge-count ivu-badge-count-alone"
-                >4.0.0</sup
-              ></span
-            >
-          </td>
+          <td>to</td>
           <td>跳转的链接，支持 vue-router 对象</td>
           <td>String | Object</td>
           <td>-</td>
         </tr>
         <tr>
-          <td>
-            replace
-            <span class="ivu-badge">
-              <sup class="ivu-badge-count ivu-badge-count-alone"
-                >4.0.0</sup
-              ></span
-            >
-          </td>
+          <td>replace</td>
           <td>路由跳转时，开启 replace 将不会向 history 添加新记录</td>
           <td>Boolean</td>
           <td>false</td>
         </tr>
         <tr>
-          <td>
-            target
-            <span class="ivu-badge">
-              <sup class="ivu-badge-count ivu-badge-count-alone"
-                >4.0.0</sup
-              ></span
-            >
-          </td>
+          <td>target</td>
           <td>相当于 a 链接的 target 属性</td>
           <td>String</td>
           <td>_self</td>
         </tr>
         <tr>
-          <td>
-            append
-            <span class="ivu-badge">
-              <sup class="ivu-badge-count ivu-badge-count-alone"
-                >4.0.0</sup
-              ></span
-            >
-          </td>
+          <td>append</td>
           <td>同 vue-router append</td>
           <td>Boolean</td>
           <td>false</td>
@@ -264,9 +247,12 @@ import { ref, onMounted } from "vue";
 import Card from "../components/card";
 import Icon from "../components/icon";
 import { Row, Col as ICol } from "../components/grid";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 export default {
-  components: { Card, Icon, Row, ICol },
+  components: { Card, Icon, Row, ICol, Anchor, AnchorLink },
   setup() {
     const movieList = ref([
       {

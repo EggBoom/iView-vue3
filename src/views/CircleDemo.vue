@@ -1,8 +1,18 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#out" title="配合外部组件使用" />
+      <AnchorLink href="#custom" title="自定义样式" />
+      <AnchorLink href="#dashboard" title="仪表盘" />
+      <AnchorLink href="#API" title="API" />
+    </Anchor>
+  </div>
+
   <h1>Circle 进度环</h1>
   <p>显示某项任务进度的百分比,统计某些指标的占比。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>圆形进度环有一系列的参数可配置，具体可以查看下面的API文档。</p>
   <div class="example">
     <Circle :percent="80">
@@ -18,7 +28,7 @@
     </Circle>
   </div>
 
-  <h2>配合外部组件使用</h2>
+  <h2 id="out">配合外部组件使用</h2>
   <p>通过数据的联动和逻辑控制，实现交互效果。</p>
   <div class="example">
     <Circle :percent="percent" :stroke-color="color">
@@ -36,7 +46,7 @@
     </ButtonGroup>
   </div>
 
-  <h2>自定义样式</h2>
+  <h2 id="custom">自定义样式</h2>
   <p>通过自定义<code>slot</code>和丰富的配置，可以组合出很多统计效果。</p>
   <div class="example">
     <Circle
@@ -58,7 +68,7 @@
     </Circle>
   </div>
 
-  <h2>仪表盘</h2>
+  <h2 id="dashboard">仪表盘</h2>
   <p>
     通过设置属性<code>dashboard</code>，可以很方便地实现仪表盘样式的进度环。
   </p>
@@ -157,11 +167,14 @@ import { computed, ref } from "vue";
 import Circle from "../components/circle";
 import Icon from "../components/icon";
 import Button from "../components/button";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 const ButtonGroup = Button.Group;
 
 export default {
-  components: { Circle, Icon, Button, ButtonGroup },
+  components: { Circle, Icon, Button, ButtonGroup, Anchor, AnchorLink },
   setup() {
     const percent = ref(0);
 

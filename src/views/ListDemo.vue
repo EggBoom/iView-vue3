@@ -1,10 +1,19 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#desc" title="基础列表" />
+      <AnchorLink href="#vertical" title="竖排列表样式" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>List 列表</h1>
   <p>
     最基础的列表展示，可承载文字、列表、图片、段落，常用于后台数据展示页面。
   </p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>设置属性<code>size</code>可以显示三种不同尺寸的列表。</p>
   <p>
     可以设置 <code>header</code>或<code>footer</code>来自定义列表头部或尾部。
@@ -37,7 +46,7 @@
     </div>
   </div>
 
-  <h2>基础列表</h2>
+  <h2 id="desc">基础列表</h2>
   <p>带有图标、标题、描述的基础列表。</p>
   <p>也可以带有列表操作组。</p>
   <div class="example">
@@ -89,7 +98,7 @@
     </List>
   </div>
 
-  <h2>竖排列表样式</h2>
+  <h2 id="vertical">竖排列表样式</h2>
   <p>
     设置属<code>item-layout</code>为<code>vertical</code>可实现竖排列表样式。
   </p>
@@ -286,7 +295,9 @@
 import { ref } from "vue";
 import List from "../components/list";
 import Icon from "../components/icon";
+import Anchor from "./../components/anchor";
 
+const AnchorLink = Anchor.Link;
 const ListItem = List.Item;
 const ListItemMeta = List.Item.Meta;
 
@@ -296,6 +307,8 @@ export default {
     ListItem,
     ListItemMeta,
     Icon,
+    Anchor,
+    AnchorLink
   },
   setup() {
     const data = ref([

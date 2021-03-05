@@ -1,8 +1,18 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#vertical" title="水平分割线" />
+      <AnchorLink href="#horizontal" title="垂直分割线" />
+      <AnchorLink href="#title" title="标题位置" />
+      <AnchorLink href="#text" title="分割文字使用正文样式" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>Divider 分割线</h1>
   <p>区隔内容的分割线。</p>
 
-  <h2>水平分割线</h2>
+  <h2 id="vertical">水平分割线</h2>
   <p>默认为水平分割线，可在中间加入文字。</p>
   <div class="example">
     <p>
@@ -26,7 +36,7 @@
     </p>
   </div>
 
-  <h2>垂直分割线</h2>
+  <h2 id="horizontal">垂直分割线</h2>
   <p>使用<code>type="vertical"</code>设置为行内的垂直分割线。</p>
   <div class="example">
     Text
@@ -36,7 +46,7 @@
     <a href="#">Link</a>
   </div>
 
-  <h2>标题位置</h2>
+  <h2 id="title">标题位置</h2>
   <p>修改分割线标题的位置。</p>
   <div class="example">
     <Divider orientation="left">Left Text</Divider>
@@ -51,7 +61,7 @@
     </p>
   </div>
 
-  <h2>分割文字使用正文样式</h2>
+  <h2 id="text">分割文字使用正文样式</h2>
   <p>设置属性<code>plain</code>可以显示为更轻量的分割文字样式。</p>
   <div class="example">
     <div>
@@ -126,7 +136,10 @@
 
 <script>
 import Divider from "../components/divider";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 export default {
-  components: { Divider },
+  components: { Divider, Anchor, AnchorLink }
 };
 </script>

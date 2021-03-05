@@ -1,8 +1,17 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#accordion" title="手风琴" />
+      <AnchorLink href="#simple" title="简洁模式" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>Collapse 折叠面板</h1>
   <p>将内容区域折叠/展开。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>默认可以同时展开多个面板，可以设置默认展开第几个。</p>
   <div class="example">
     <Collapse v-model="value1">
@@ -36,7 +45,7 @@
     </Collapse>
   </div>
 
-  <h2>手风琴</h2>
+  <h2 id="accordion">手风琴</h2>
   <p>
     通过设置属性<code>accordion</code>开启手风琴模式，每次只能打开一个面板。
   </p>
@@ -72,7 +81,7 @@
     </Collapse>
   </div>
 
-  <h2>简洁模式</h2>
+  <h2 id="simple">简洁模式</h2>
   <p>设置属性<code>simple</code>可以显示为不带边框和背景色的简洁模式。</p>
   <div class="example">
     <Collapse simple>
@@ -211,14 +220,14 @@
 <script>
 import { ref } from "vue";
 import Collapse from "../components/collapse";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 const Panel = Collapse.Panel;
 
 export default {
-  components: {
-    Collapse,
-    Panel,
-  },
+  components: { Collapse, Panel, Anchor, AnchorLink },
   setup() {
     const value1 = ref("1");
     const value2 = ref("1");

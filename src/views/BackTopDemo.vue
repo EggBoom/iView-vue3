@@ -1,15 +1,23 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#custom" title="自定义样式" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>BackTop 返回顶部</h1>
   <p>当页面内容冗长，需要快捷返回顶部时使用，一般放置在页面右下角位置。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>默认位置距离页面右部和底部 30px，滚动至距顶端 400px 时显示。</p>
   <div class="example">
     <p>向下滚动页面，灰色的按钮为默认效果。</p>
     <BackTop></BackTop>
   </div>
 
-  <h2>基础用法</h2>
+  <h2 id="custom">自定义样式</h2>
   <p>自定义了位置在页面底部 200px,滚动至距顶端 200px 时显示。</p>
   <div class="example">
     <p>向下滚动页面，蓝色的按钮为自定义效果。</p>
@@ -83,10 +91,11 @@
 
 <script>
 import BackTop from "../components/back-top";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 export default {
-  components: {
-    BackTop,
-  },
+  components: { BackTop, Anchor, AnchorLink }
 };
 </script>
 

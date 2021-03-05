@@ -1,11 +1,25 @@
 <template>
+  <div class="anchorWrapper">
+    <Anchor show-ink>
+      <AnchorLink href="#basic" title="基础用法" />
+      <AnchorLink href="#gutter" title="区块间隔" />
+      <AnchorLink href="#order" title="栅格顺序(Flex)" />
+      <AnchorLink href="#pull" title="栅格排序" />
+      <AnchorLink href="#offset" title="左右偏移" />
+      <AnchorLink href="#flex" title="Flex布局" />
+      <AnchorLink href="#align" title="Flex对齐" />
+      <AnchorLink href="#responsive" title="响应式布局" />
+      <AnchorLink href="#api" title="API" />
+    </Anchor>
+  </div>
+
   <h1>Grid 栅格</h1>
   <p>
     采用了24栅格系统，将区域进行24等分，这样可以轻松应对大部分布局问题。使用栅格系统进行网页布局，可以使页面排版美观、舒适。
   </p>
   <p>非 template/render 模式下，需使用 i-col。</p>
 
-  <h2>基础用法</h2>
+  <h2 id="basic">基础用法</h2>
   <p>水平排列的布局。</p>
   <p><code>col</code>必须放在<code>row</code>里面。</p>
   <div class="example">
@@ -28,7 +42,7 @@
     </Row>
   </div>
 
-  <h2>区块间隔</h2>
+  <h2 id="gutter">区块间隔</h2>
   <p>
     通过给 <code>row</code> 添加 <code>gutter</code> 属性，可以给下属的
     <code>col</code> 添加间距，推荐使用 <code>(16+8n)px</code> 作为栅格间隔。
@@ -52,7 +66,7 @@
     </div>
   </div>
 
-  <h2>栅格顺序(Flex)</h2>
+  <h2 id="order">栅格顺序(Flex)</h2>
   <p>通过 Flex 布局的order来改变栅格的顺序。</p>
   <div class="example">
     <Row type="flex">
@@ -63,7 +77,7 @@
     </Row>
   </div>
 
-  <h2>栅格排序</h2>
+  <h2 id="pull">栅格排序</h2>
   <p>通过设置push和pull来改变栅格的顺序。</p>
   <div class="example">
     <Row>
@@ -72,7 +86,7 @@
     </Row>
   </div>
 
-  <h2>左右偏移</h2>
+  <h2 id="offset">左右偏移</h2>
   <p>通过设置offset属性，将列进行左右偏移，偏移栅格数为offset的值。</p>
   <div class="example">
     <Row>
@@ -90,7 +104,7 @@
     </Row>
   </div>
 
-  <h2>Flex布局</h2>
+  <h2 id="flex">Flex布局</h2>
   <p>
     通过给row设置参数justify为不同的值，来定义子元素的排布方式。在flex模式下有效。
   </p>
@@ -132,7 +146,7 @@
     </Row>
   </div>
 
-  <h2>Flex对齐</h2>
+  <h2 id="align">Flex对齐</h2>
   <p>
     通过给row设置参数align为不同的值，来定义子元素在垂直方向上的排布方式。在flex模式下有效。
   </p>
@@ -162,7 +176,7 @@
     </div>
   </div>
 
-  <h2>响应式布局</h2>
+  <h2 id="responsive">响应式布局</h2>
   <p>
     参照 Bootstrap 的 响应式设计，预设六个响应尺寸：xs sm md lg xl xxl，详见
     API。
@@ -235,14 +249,7 @@
           <td>-</td>
         </tr>
         <tr>
-          <td>
-            wrap
-            <span class="ivu-badge">
-              <sup class="ivu-badge-count ivu-badge-count-alone"
-                >4.5.0</sup
-              ></span
-            >
-          </td>
+          <td>wrap</td>
           <td>是否自动换行</td>
           <td>Boolean</td>
           <td>true</td>
@@ -265,7 +272,6 @@
           <td>span</td>
           <td>
             栅格的占位格数，可选值为0~24的整数，为 0 时，相当于<code
-             
               >display:none</code
             >
           </td>
@@ -273,23 +279,14 @@
           <td>-</td>
         </tr>
         <tr>
-          <td>
-            flex
-            <span class="ivu-badge">
-              <sup class="ivu-badge-count ivu-badge-count-alone"
-                >4.5.0</sup
-              ></span
-            >
-          </td>
+          <td>flex</td>
           <td>flex 布局属性</td>
           <td>Number | String</td>
           <td>-</td>
         </tr>
         <tr>
           <td>order</td>
-          <td>
-            栅格的顺序，在<code>flex</code>布局模式下有效
-          </td>
+          <td>栅格的顺序，在<code>flex</code>布局模式下有效</td>
           <td>Number | String</td>
           <td>-</td>
         </tr>
@@ -378,9 +375,12 @@
 
 <script>
 import { Row, Col as ICol } from "../components/grid";
+import Anchor from "./../components/anchor";
+
+const AnchorLink = Anchor.Link;
 
 export default {
-  components: { Row, ICol },
+  components: { Row, ICol, Anchor, AnchorLink },
 };
 </script>
 <style scoped>
