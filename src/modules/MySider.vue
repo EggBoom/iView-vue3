@@ -84,6 +84,9 @@
             <MenuItem @click="handleClick">
                 Tag 标签
             </MenuItem>
+            <MenuItem @click="handleClick">
+                Tooltip 视图
+            </MenuItem>
         </MenuGroup>
         <MenuGroup title="其他">
             <MenuItem @click="handleClick">

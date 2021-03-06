@@ -64,14 +64,12 @@ flex-direction: column;
   bottom: 0;
   left: 150px;
 
-  overflow-y: auto;
+  overflow-y: scroll;
 }
 
 .app-right {
   margin-left: 390px;
   margin-right: 150px;
-
-  overflow-y: auto;
 }
 
 .wrapper-header {
