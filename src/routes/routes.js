@@ -22,6 +22,7 @@ import BreadcrumbDemo from '../views/BreadcrumbDemo.vue';
 import ProgressDemo from '../views/ProgressDemo.vue';
 import TagDemo from '../views/TagDemo.vue';
 import TooltipDemo from '../views/TooltipDemo.vue';
+import TimelineDemo from '../views/TimelineDemo.vue';
 
 const routes = [
     { path: '/', component: ButtonDemo},
@@ -49,6 +50,7 @@ const routes = [
     { path: '/Progress', component: ProgressDemo },
     { path: '/Tag', component: TagDemo },
     { path: '/Tooltip', component: TooltipDemo },
+    { path: '/Timeline', component: TimelineDemo },
 ];
 
 export default routes;

@@ -85,7 +85,10 @@
                 Tag 标签
             </MenuItem>
             <MenuItem @click="handleClick">
-                Tooltip 视图
+                Tooltip 文字提示
+            </MenuItem>
+            <MenuItem @click="handleClick">
+                Timeline 时间轴
             </MenuItem>
         </MenuGroup>
         <MenuGroup title="其他">

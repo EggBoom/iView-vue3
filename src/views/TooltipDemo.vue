@@ -139,21 +139,11 @@
 
   <div class="api">
     <div class="anchor">
-      <!---->
       <h2 id="API">API</h2>
-      <!---->
-      <!---->
-      <!---->
-      <!---->
       <a href="#API">#</a>
     </div>
     <div class="anchor">
-      <!---->
-      <!---->
       <h3 id="Tooltip_props">Tooltip props</h3>
-      <!---->
-      <!---->
-      <!---->
       <a href="#Tooltip_props">#</a>
     </div>
     <table>
