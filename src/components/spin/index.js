@@ -2,10 +2,8 @@ import Spin from './spin.js';
 
 let spinInstance;
 
-function getSpinInstance (render = undefined) {
-    spinInstance = spinInstance || Spin.newInstance({
-        render: render
-    });
+function getSpinInstance (render) {
+    spinInstance = spinInstance || Spin.newInstance({ render });
 
     return spinInstance;
 }

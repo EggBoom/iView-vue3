@@ -78,6 +78,12 @@
             <MenuItem @click="handleClick">
                 Avatar 头像
             </MenuItem>
+            <MenuItem @click="handleClick">
+                Progress 进度条
+            </MenuItem>
+            <MenuItem @click="handleClick">
+                Tag 标签
+            </MenuItem>
         </MenuGroup>
         <MenuGroup title="其他">
             <MenuItem @click="handleClick">

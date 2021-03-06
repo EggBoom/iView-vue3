@@ -10,6 +10,7 @@
         <div class="wrapper-content">
           <router-view></router-view>
         </div>
+        <MyFooter />
     </div>
 </div>
 </template>
@@ -17,11 +18,13 @@
 <script>
 import MySider from './modules/MySider.vue';
 import MyHeader from './modules/MyHeader.vue';
+import MyFooter from './modules/MyFooter.vue';
 
 export default {
     components: { 
       MySider,
       MyHeader,
+      MyFooter
     }
 };
 </script>
