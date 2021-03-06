@@ -1,61 +1,56 @@
 <template>
     <span>
-        <a v-if="to || href" :class="linkClasses" @click="handleClick">
+        <a v-if="to" :class="linkClasses" @click="handleClick">
             <slot></slot>
         </a>
         <span v-else :class="linkClasses">
             <slot></slot>
         </span>
-        <span :class="separatorClasses" v-html="separator" v-if="!showSeparator"></span>
-        <span :class="separatorClasses" v-else>
-            <slot name="separator"></slot>
+
+        <span :class="separatorClasses">
+            <slot name="separator">{{ separator }}</slot>
         </span>
     </span>
 </template>
 <script>
-    // todo 3.0 时废弃 href
-    const prefixCls = 'ivu-breadcrumb-item';
+import { getCurrentInstance, inject } from 'vue';
+export default {
+    name: 'BreadcrumbItem',
+    props: {
+        to: {
+            type: [Object, String]
+        },
+        replace: {
+            type: Boolean,
+            default: false
+        }
+    },
+    setup(props, { slots }) {
+        const inatance = getCurrentInstance();
 
-    export default {
-        name: 'BreadcrumbItem',
-        props: {
-            href: {
-                type: [Object, String]
-            },
-            to: {
-                type: [Object, String]
-            },
-            replace: {
-                type: Boolean,
-                default: false
-            }
-        },
-        data () {
-            return {
-                separator: '',
-                showSeparator: false
-            };
-        },
-        computed: {
-            linkClasses () {
-                return `${prefixCls}-link`;
-            },
-            separatorClasses () {
-                return `${prefixCls}-separator`;
-            }
-        },
-        mounted () {
-            this.showSeparator = this.$slots.separator !== undefined;
-        },
-        methods: {
-            handleClick () {
-                const isRoute = this.$router;
-                if (isRoute) {
-                    this.replace ? this.$router.replace(this.to || this.href) : this.$router.push(this.to || this.href);
-                } else {
-                    window.location.href = this.to || this.href;
-                }
+        const prefixCls = 'ivu-breadcrumb-item';
+
+        const linkClasses = `${prefixCls}-link`;
+        const separatorClasses = `${prefixCls}-separator`;
+
+        const handleClick = () => {
+            const router = inatance.proxy.$router;
+            if (router) {
+                props.replace ? router.replace(props.to) : router.push(props.to);
+            } else {
+                window.location.href = props.to;
             }
         }
-    };
+
+        const separator = inject('BreadcrumbSeparator');
+
+        return {
+            prefixCls,
+            separator,
+            linkClasses,
+            separatorClasses,
+            handleClick
+        }
+    }
+};
 </script>

@@ -1,67 +1,67 @@
 <template>
     <Menu theme="light" active-name="1">
         <MenuGroup title="基础">
-            <MenuItem name="1" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Button 按钮
             </MenuItem>
-            <!-- <MenuItem name="2" @click="handleClick">
+            <!-- <MenuItem @click="handleClick">
                 Icon 图标
             </MenuItem> -->
         </MenuGroup>
         <MenuGroup title="布局">
-            <MenuItem name="3" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Row/Col 栅格
             </MenuItem>
-            <!-- <MenuItem name="4" @click="handleClick">
+            <!-- <MenuItem @click="handleClick">
                 Layout 布局
             </MenuItem> -->
-            <MenuItem name="5" @click="handleClick">
+            <MenuItem @click="handleClick">
                 List 列表
             </MenuItem>
-            <MenuItem name="6" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Card 卡片
             </MenuItem>
-            <MenuItem name="7" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Collapse 折叠面板
             </MenuItem>
-            <MenuItem name="9" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Divider 分割线
             </MenuItem>
         </MenuGroup>
         <MenuGroup title="导航">
-            <!-- <MenuItem name="11" @click="handleClick">
+            <!-- <MenuItem @click="handleClick">
                 Menu 导航菜单
             </MenuItem>
-            <MenuItem name="12" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Tabs 标签页
             </MenuItem>
-            <MenuItem name="13" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Dropdown 下拉菜单
             </MenuItem>
-            <MenuItem name="14" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Page 分页
-            </MenuItem>
-            <MenuItem name="15" @click="handleClick">
+            </MenuItem> -->
+            <MenuItem @click="handleClick">
                 Breadcrumb 面包屑
-            </MenuItem>  -->
+            </MenuItem>
             <MenuItem @click="handleClick">
                 Badge 徽标
             </MenuItem>
             <MenuItem @click="handleClick">
                 Anchor 锚点
             </MenuItem>
-            <!-- <MenuItem name="18" @click="handleClick">
+            <!-- <MenuItem @click="handleClick">
                 Steps 步骤数
             </MenuItem>
-            <MenuItem name="19" @click="handleClick">
+            <MenuItem @click="handleClick">
                 LoadingBar 加载进度条
             </MenuItem> -->
         </MenuGroup>
         <MenuGroup title="表单">
-            <MenuItem name="22" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Radio 单选
             </MenuItem>
-            <MenuItem name="23" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Checkbox 多选
             </MenuItem>
             <MenuItem @click="handleClick">
@@ -75,15 +75,18 @@
             <MenuItem @click="handleClick">
                 Alert 警告提示
             </MenuItem>
+            <MenuItem @click="handleClick">
+                Avatar 头像
+            </MenuItem>
         </MenuGroup>
         <MenuGroup title="其他">
-            <MenuItem name="20" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Affix 图钉
             </MenuItem>
-            <MenuItem name="21" @click="handleClick">
+            <MenuItem @click="handleClick">
                 BackTop 返回顶部
             </MenuItem>
-            <MenuItem name="22" @click="handleClick">
+            <MenuItem @click="handleClick">
                 Circle 进度环
             </MenuItem>
         </MenuGroup>

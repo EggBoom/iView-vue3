@@ -17,6 +17,8 @@ import RateDemo from '../views/RateDemo.vue';
 import AnchorDemo from '../views/AnchorDemo.vue';
 import AlertDemo from '../views/AlertDemo.vue';
 import BadgeDemo from '../views/BadgeDemo.vue';
+import AvatarDemo from '../views/AvatarDemo.vue';
+import BreadcrumbDemo from '../views/BreadcrumbDemo.vue';
 
 const routes = [
     { path: '/', component: ButtonDemo},
@@ -39,6 +41,8 @@ const routes = [
     { path: '/Anchor', component: AnchorDemo },
     { path: '/Alert', component: AlertDemo },
     { path: '/Badge', component: BadgeDemo },
+    { path: '/Avatar', component: AvatarDemo },
+    { path: '/Breadcrumb', component: BreadcrumbDemo },
 ];
 
 export default routes;

@@ -1,43 +1,25 @@
 <template>
-    <div :class="classes">
+    <div :class="prefixCls">
         <slot></slot>
     </div>
 </template>
 <script>
-    const prefixCls = 'ivu-breadcrumb';
+import { provide } from 'vue';
 
-    export default {
-        name: 'Breadcrumb',
-        props: {
-            separator: {
-                type: String,
-                default: '/'
-            }
-        },
-        computed: {
-            classes () {
-                return `${prefixCls}`;
-            }
-        },
-        mounted () {
-            this.updateChildren();
-        },
-        updated () {
-            this.$nextTick(() => {
-                this.updateChildren();
-            });
-        },
-        methods: {
-            updateChildren () {
-                this.$children.forEach((child) => {
-                    child.separator = this.separator;
-                });
-            }
-        },
-        watch: {
-            separator () {
-                this.updateChildren();
-            }
+export default {
+    name: 'Breadcrumb',
+    props: {
+        separator: {
+            type: String,
+            default: '/'
         }
-    };
+    },
+    setup(props) {
+        const prefixCls = 'ivu-breadcrumb';
+
+        provide('BreadcrumbSeparator', props.separator);
+
+        return { prefixCls };
+    }
+};
 </script>
