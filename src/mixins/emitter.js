@@ -8,7 +8,7 @@ const wrapper = Symbol('wrapper')
 
 const emitter = mitt();
 
-export default function(_instance) {
+export default function() {
 
     const currentComponentInstance = getCurrentInstance();
 

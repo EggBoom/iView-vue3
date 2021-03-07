@@ -24,7 +24,7 @@
     </div>
 </template>
 <script>
-import Popper from 'popper.js';
+import Popper from 'popper.js'
 import TransferDom from '../../directives/transfer-dom';
 import { oneOf } from '../../utils/assist';
 import { computed, onMounted, onUnmounted, onUpdated, ref, watch, nextTick, getCurrentInstance } from 'vue';
@@ -109,8 +109,6 @@ export default {
         const contentCls = `${prefixCls}-content`;
         const arrowCls = `${prefixCls}-arrow`;
 
-        const instance = getCurrentInstance();
-
         const transferIndex = ref(0);
 
         const timeout = ref('');
@@ -120,7 +118,6 @@ export default {
 
         const popper = ref(null);
         const reference = ref(null);
-        let popperJS = null;
 
         const innerStyles = computed(() => {
             const styles = {};
@@ -176,6 +173,7 @@ export default {
 
         const tIndex = ref(handleGetIndex());
 
+            let popperJS = null;
 
         const createPopper = () => {
             if (!/^(top|bottom|left|right)(-start|-end)?$/g.test(props.placement)) {
@@ -198,18 +196,21 @@ export default {
             options.modifiers.offset.offset = props.offset;
             options.onCreate =()=>{
                 nextTick(updatePopper);
-                emit('created', instance.proxy);
             };
 
             popperJS = new Popper(reference.value, popper.value, options);
         };
+
         const updatePopper = () => {
             popperJS ? popperJS.update() : createPopper();
         };
+
         const doDestroy = () => {
-            if (visible.value) return;
-            popperJS.destroy();
-            popperJS = null;
+            if(popperJS) {
+                debugger
+                popperJS.destroy();
+                popperJS = null;
+            }
         };
 
         onUpdated(() => {
@@ -222,20 +223,12 @@ export default {
             }
         });
 
-        onUnmounted(() => {
-            if (popperJS) {
-                popperJS.destroy();
-            }
-        });
+        onUnmounted(() => doDestroy());
 
         watch(() => props.content, () => updatePopper());
+
         watch(visible, (newValue) => {
-            if (newValue) {
-                updatePopper();
-                emit('on-popper-show');
-            } else {
-                emit('on-popper-hide');
-            }
+            updatePopper();
             emit('input', newValue);
         });
 
@@ -254,7 +247,6 @@ export default {
             handleClosePopper,
             handleGetIndex,
             handleShowPopper,
-            popperJS,
             visible
         }
     }

@@ -88,6 +88,9 @@
                 Tooltip 文字提示
             </MenuItem>
             <MenuItem @click="handleClick">
+                Poptip 气泡提示
+            </MenuItem>
+            <MenuItem @click="handleClick">
                 Timeline 时间轴
             </MenuItem>
         </MenuGroup>
