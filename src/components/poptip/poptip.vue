@@ -13,6 +13,7 @@
             <slot></slot>
         </div>
         <transition name="fade">
+            <teleport to="body" :disabled="!transfer">
             <div
                 :class="popperClasses"
                 :style="styles"
@@ -20,9 +21,7 @@
                 v-show="visible"
                 @click="handleTransferClick"
                 @mouseenter="handleMouseenter"
-                @mouseleave="handleMouseleave"
-                :data-transfer="transfer"
-                v-transfer-dom>
+                @mouseleave="handleMouseleave">
                 <div :class="contentCls">
                     <div :class="arrowCls"></div>
                     <div v-if="confirm" :class="innerCls">
@@ -57,6 +56,7 @@
                     </div>
                 </div>
             </div>
+            </teleport>
         </transition>
     </div>
 </template>
@@ -64,13 +64,12 @@
 import Popper from 'popper.js';
 import Button from '../button';
 import clickOutside from '../../directives/clickoutside';
-import TransferDom from '../../directives/transfer-dom';
 import { oneOf } from '../../utils/assist';
 import { computed, onMounted, onUnmounted, onUpdated, ref, watch, nextTick } from 'vue';
 
 export default {
     name: 'Poptip',
-    directives: { clickOutside, TransferDom },
+    directives: { clickOutside },
     components: { Button },
     props: {
         modelValue: {
@@ -254,7 +253,6 @@ export default {
             if (props.transfer) disableCloseUnderTransfer.value = true;
         };
         const handleClose = () => {
-            debugger
             if (disableCloseUnderTransfer.value) {
                 disableCloseUnderTransfer.value = false;
                 return false;
@@ -313,13 +311,13 @@ export default {
             emit('on-ok');
         };
         const getInputChildren = () => {
-            const _inputs = reference.value.querySelectorAll('input');
-            const _textareas = reference.value.querySelectorAll('textarea');
+            const _inputs = reference.value && reference.value.querySelectorAll('input');
+            const _textareas = reference.value && reference.value.querySelectorAll('textarea');
             let _children = null;
 
-            if (_inputs.length) {
+            if (_inputs && _inputs.length) {
                 _children = _inputs[0];
-            } else if (_textareas.length) {
+            } else if (_textareas && _textareas.length) {
                 _children = _textareas[0];
             }
 
@@ -359,8 +357,10 @@ export default {
         };
 
         const doDestroy = () => {
-            popperJS.destroy();
-            popperJS = null;
+            if (popperJS) {
+                popperJS.destroy();
+                popperJS = null;
+            }
         };
 
         watch(visible, (newValue) => {

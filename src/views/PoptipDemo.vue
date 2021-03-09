@@ -59,8 +59,9 @@
     <div class="center">
       <div class="center-left">
         <Poptip content="Left Top 文字提示" placement="left-start">
-          <Button>左上</Button> </Poptip
-        ><br /><br />
+          <Button>左上</Button> 
+        </Poptip>
+        <br /><br />
         <Poptip content="Left Center 文字提示" placement="left">
           <Button>左边</Button> </Poptip
         ><br /><br />
@@ -94,18 +95,16 @@
   </div>
 
   <h2 id="close">从浮层内关闭</h2>
-  <p data-v-359dd999="">
-    通过<code data-v-359dd999="">v-model</code>来控制提示框的显示和隐藏。
-  </p>
+  <p>通过<code>v-model</code>来控制提示框的显示和隐藏。</p>
   <div class="example">
     <Poptip v-model="visible">
       <a>Click</a>
-      <template #title
-        ><div><i>Custom title</i></div></template
-      >
-      <template #content
-        ><div><a @click="visible = false">close</a></div></template
-      >
+      <template #title>
+        <div><i>Custom title</i></div>
+      </template>
+      <template #content>
+        <div><a @click="visible = false">close</a></div>
+      </template>
     </Poptip>
   </div>
 
@@ -151,9 +150,9 @@
   </div>
 
   <h2 id="wrap">自动换行</h2>
-  <p data-v-359dd999="">
+  <p>
     设置属性
-    <code data-v-359dd999="">word-wrap</code
+    <code>word-wrap</code
     >，当超出宽度后，文本将自动换行，并两端对齐。
   </p>
   <div class="example">

@@ -1,50 +1,65 @@
 <template>
-    <div :class="prefixCls" :style="styles"><slot></slot></div>
+    <div :class="prefixCls" :style="styles">
+        <slot></slot>
+    </div>
 </template>
 <script>
-    const prefixCls = 'ivu-carousel-item';
+import { computed, onMounted, ref, inject, onUnmounted, watch, nextTick } from 'vue';
+export default {
+    componentName: 'carousel-item',
+    name: 'CarouselItem',
+    setup() {
+        const carousel = inject('carousel');
+        const carouselWidth = inject('CarouselWidth');
+        const carouselHeight = inject('CarouselHeight');
+        const prefixCls = 'ivu-carousel-item';
+        const width = ref(0);
+        const height = ref('auto');
+        const left = ref(0);
 
-    export default {
-        componentName: 'carousel-item',
-        name: 'CarouselItem',
-        data () {
+        const styles = computed(() => {
             return {
-                prefixCls: prefixCls,
-                width: 0,
-                height: 'auto',
-                left: 0
+                width: `${width.value}px`,
+                height: `${height.value}`,
+                left: `${left.value}px`
             };
-        },
-        computed: {
-            styles () {
-                return {
-                    width: `${this.width}px`,
-                    height: `${this.height}`,
-                    left: `${this.left}px`
-                };
-            }
-        },
-        mounted () {
-            this.$parent.slotChange();
-        },
-        watch: {
-            width (val) {
-                if (val && this.$parent.loop) {
-                    this.$nextTick(() => {
-                        this.$parent.initCopyTrackDom();
-                    });
-                }
-            },
-            height (val) {
-                if (val && this.$parent.loop) {
-                    this.$nextTick(() => {
-                        this.$parent.initCopyTrackDom();
-                    });
-                }
-            }
-        },
-        beforeDestroy () {
-            this.$parent.slotChange();
+        });
+
+        onMounted(() => {
+            carousel.proxy.slotChange();
+            nextTick(() => {
+                width.value = carousel.proxy.listWidth;
+                height.value = 'auto';
+            })
+        });
+
+        onUnmounted(() => {
+            carousel.proxy.slotChange();
+        });
+
+        // watch(width, (newValue) => {
+        //      if (newValue && carousel.proxy.loop) {
+        //         nextTick(() => {
+        //             carousel.proxy.initCopyTrackDom();
+        //         });
+        //     }
+        // });
+
+        // watch(height, (newValue) => {
+        //     if (newValue && carousel.proxy.loop) {
+        //         nextTick(() => {
+        //             carousel.proxy.initCopyTrackDom();
+        //         });
+        //     }
+        // });
+
+        return {
+            prefixCls,
+            width,
+            height,
+            left,
+            styles
         }
-    };
+    }
+};
 </script>

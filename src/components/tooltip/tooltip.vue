@@ -4,15 +4,14 @@
             <slot></slot>
         </div>
         <transition name="fade">
+            <teleport to="body" :disabled="!transfer">
             <div
                 :class="dropdownCls"
                 :style="dropStyles"
                 ref="popper"
                 v-show="!disabled && (visible || always)"
                 @mouseenter="handleShowPopper"
-                @mouseleave="handleClosePopper"
-                :data-transfer="transfer"
-                v-transfer-dom>
+                @mouseleave="handleClosePopper">
                 <div :class="contentCls">
                     <div :class="arrowCls"></div>
                     <div :class="innerClasses" :style="innerStyles">
@@ -20,18 +19,17 @@
                     </div>
                 </div>
             </div>
+            </teleport>
         </transition>
     </div>
 </template>
 <script>
 import Popper from 'popper.js'
-import TransferDom from '../../directives/transfer-dom';
 import { oneOf } from '../../utils/assist';
 import { computed, onMounted, onUnmounted, onUpdated, ref, watch, nextTick, getCurrentInstance } from 'vue';
 
 export default {
     name: 'Tooltip',
-    directives: { TransferDom },
     props: {
         value: {
             type: Boolean,

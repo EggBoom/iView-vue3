@@ -93,6 +93,9 @@
             <MenuItem @click="handleClick">
                 Timeline 时间轴
             </MenuItem>
+            <MenuItem @click="handleClick">
+                Carousel 走马灯
+            </MenuItem>
         </MenuGroup>
         <MenuGroup title="其他">
             <MenuItem @click="handleClick">

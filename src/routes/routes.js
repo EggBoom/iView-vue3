@@ -24,6 +24,7 @@ import TagDemo from '../views/TagDemo.vue';
 import TooltipDemo from '../views/TooltipDemo.vue';
 import TimelineDemo from '../views/TimelineDemo.vue';
 import PoptipDemo from '../views/PoptipDemo.vue';
+import CarouselDemo from '../views/CarouselDemo.vue';
 
 const routes = [
     { path: '/', component: ButtonDemo},
@@ -53,6 +54,7 @@ const routes = [
     { path: '/Tooltip', component: TooltipDemo },
     { path: '/Timeline', component: TimelineDemo },
     { path: '/Poptip', component: PoptipDemo },
+    { path: '/Carousel', component: CarouselDemo },
 ];
 
 export default routes;
